@@ -34,6 +34,32 @@ export const registerEffect = createEffect(
   {functional: true}
 )
 
+export const loginEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    authService = inject(AuthService),
+    persitanceService = inject(PersistanceService)
+  ) => {
+    return actions$.pipe(
+      ofType(authActions.login),
+      switchMap(({request}) => {
+        return authService.login(request).pipe(
+          map((currentUser: CurrentUserInterface) => {
+            persitanceService.set('accessToken', currentUser.token)
+            return authActions.registerSuccess({currentUser})
+          }),
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(
+              authActions.registerFailure({errors: errorResponse.error.errors})
+            )
+          })
+        )
+      })
+    )
+  },
+  {functional: true}
+)
+
 export const redirectAfterRegisterEffect = createEffect(
   (actions$ = inject(Actions), router = inject(Router)) => {
     return actions$.pipe(

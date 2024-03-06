@@ -8,6 +8,7 @@ import {provideStoreDevtools} from '@ngrx/store-devtools'
 import {authFeatureKey, authReducer} from './auth/store/reducers'
 import {provideEffects} from '@ngrx/effects'
 import * as authEffects from './auth/store/effects'
+import {feedFeatureKey, feedReducer} from './feed/store/reducers'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore(),
     provideState(authFeatureKey, authReducer),
+    provideState(feedFeatureKey, feedReducer),
     provideEffects(authEffects),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
