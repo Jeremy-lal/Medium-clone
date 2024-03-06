@@ -1,9 +1,9 @@
 import {BackendErrorsInterface} from '../../shared/types/backendErrors.interface'
-import {Article} from './article.interface'
+import {ArticleInterface} from './article.interface'
 
 export interface FeedStateInterface {
   isSubmitting: boolean
-  articles: Article[] | null | undefined
+  articles: ArticleInterface[] | null | undefined
   isLoading: boolean
   validationErrors: BackendErrorsInterface | null
 }

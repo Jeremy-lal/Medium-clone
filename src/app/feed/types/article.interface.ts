@@ -1,6 +1,6 @@
 import {Author} from './author.interface'
 
-export interface Article {
+export interface ArticleInterface {
   slug: string
   title: string
   description: string
