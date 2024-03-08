@@ -9,5 +9,8 @@ export const feedActions = createActionGroup({
     'Get Articles': props<{request: ListArticlesParamsRequest}>(),
     'Get Articles success': props<{articles: ArticleInterface[]}>(),
     'Get Articles Failure': props<{errors: BackendErrorsInterface}>(),
+    'Get Tags': props<{request: string}>(), // empty ?
+    'Get Tags success': props<{tags: string[]}>(),
+    'Get Tags Failure': props<{errors: BackendErrorsInterface}>(),
   },
 })

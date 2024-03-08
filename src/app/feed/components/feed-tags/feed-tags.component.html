@@ -1,0 +1,9 @@
+<div class="sidebar">
+  <p>Popular Tags</p>
+
+  <div class="tag-list" ng-show="$ctrl.tags">
+    @for(tag of tags; track tag) {
+    <a class="tag-default tag-pill" (click)="selectTag(tag)">{{ tag }}</a>
+    }
+  </div>
+</div>

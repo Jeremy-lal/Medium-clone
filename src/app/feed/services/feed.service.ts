@@ -5,6 +5,7 @@ import {ListArticlesParamsRequest} from '../types/listArticlesParamsRequest.inte
 import {environment} from '../../../environments/environment'
 import {ListArticlesResponse} from '../types/listArticlesResponse.interface'
 import {ArticleInterface} from '../types/article.interface'
+import {ListTagsResponse} from '../types/listTagsResponse.interface'
 
 @Injectable({providedIn: 'root'})
 export class FeedService {
@@ -20,6 +21,14 @@ export class FeedService {
     return this.http
       .get<ListArticlesResponse>(url)
       .pipe(map((response: ListArticlesResponse) => response.articles))
+  }
+
+  getTags(): Observable<string[]> {
+    const url = environment.apiUrl + '/tags'
+
+    return this.http
+      .get<ListTagsResponse>(url)
+      .pipe(map((response: ListTagsResponse) => response.tags))
   }
 
   private constructQueryParams(params: ListArticlesParamsRequest): string {

@@ -10,6 +10,7 @@ import {authFeatureKey, authReducer} from './auth/store/reducers'
 import {feedFeatureKey, feedReducer} from './feed/store/reducers'
 import * as authEffects from './auth/store/effects'
 import * as getArticlesEffect from './feed/store/effetcs'
+import * as getTagsEffect from './feed/store/effetcs'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
-    provideEffects(authEffects, getArticlesEffect),
+    provideEffects(authEffects, getArticlesEffect, getTagsEffect),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
