@@ -3,7 +3,6 @@ import {feedActions} from './action'
 import {FeedStateInterface} from '../types/feedState.interface'
 
 const initialState: FeedStateInterface = {
-  isSubmitting: false,
   articles: undefined,
   isLoading: false,
   validationErrors: null,
@@ -15,17 +14,17 @@ const feedFeature = createFeature({
     initialState,
     on(feedActions.getArticles, (state) => ({
       ...state,
-      isSubmitting: true,
+      isLoading: true,
       validationErrors: null,
     })),
     on(feedActions.getArticlesSuccess, (state, action) => ({
       ...state,
-      isSubmitting: false,
-      currentUser: action.articles,
+      isLoading: false,
+      articles: action.articles,
     })),
     on(feedActions.getArticlesFailure, (state, action) => ({
       ...state,
-      isSubmitting: false,
+      isLoading: false,
       validationErrors: action.errors,
     }))
   ),
@@ -34,7 +33,6 @@ const feedFeature = createFeature({
 export const {
   name: feedFeatureKey,
   reducer: feedReducer,
-  selectIsSubmitting,
   selectValidationErrors,
   selectIsLoading,
   selectArticles,

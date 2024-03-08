@@ -14,10 +14,11 @@ export class FeedService {
     data: ListArticlesParamsRequest = {}
   ): Observable<ArticleInterface[]> {
     const url =
-      environment.apiUrl + '/articles' + this.constructQueryParams(data)
+      environment.apiUrl + '/articles' + '?' + this.constructQueryParams(data)
+    console.log(url)
 
     return this.http
-      .post<ListArticlesResponse>(url, data)
+      .get<ListArticlesResponse>(url)
       .pipe(map((response: ListArticlesResponse) => response.articles))
   }
 
@@ -28,3 +29,7 @@ export class FeedService {
       .join('&')
   }
 }
+
+// https://api.realworld.io/api/articles?limit=10&offset=0
+
+// https://api.realworld.io/api/articles?limit=10&offset=0

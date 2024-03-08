@@ -8,6 +8,8 @@ import {HttpErrorResponse} from '@angular/common/http'
 
 export const getArticlesEffect = createEffect(
   (actions$ = inject(Actions), feedService = inject(FeedService)) => {
+    console.log('getArticlesEffect')
+
     return actions$.pipe(
       ofType(feedActions.getArticles),
       switchMap(({request}) => {

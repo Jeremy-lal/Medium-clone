@@ -1,0 +1,31 @@
+<div class="article-preview">
+  <div class="article-meta">
+    <a>
+      <img src="https://api.realworld.io/images/demo-avatar.png" />
+    </a>
+
+    <div class="info">
+      <a class="author ng-binding">{{ article.author.username }}</a>
+      <span class="date ng-binding">{{
+        article.createdAt | date : 'longDate'
+      }}</span>
+    </div>
+  </div>
+
+  <a class="preview-link" [routerLink]="'/article/' + article.slug">
+    <h1 class="ng-binding">
+      {{ article.title }}
+    </h1>
+    <p class="ng-binding">
+      {{ article.description }}
+    </p>
+    <span>Read more...</span>
+    <ul class="tag-list">
+      @for(tag of article.tagList; track tag) {
+      <li class="tag-default tag-pill tag-outline ng-binding ng-scope">
+        {{ tag }}
+      </li>
+      }
+    </ul>
+  </a>
+</div>
